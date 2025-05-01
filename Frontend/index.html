@@ -9,6 +9,47 @@
       rel="stylesheet"
     />
     <style>
+      :root {
+        --primary: #2d1b64;
+        --accent-red: #c94a44;
+        --accent-green: #648b3c;
+        --light-bg: #d8c7b0;
+        --teal: #7ed6c0;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: var(--light-bg);
+        margin: 0;
+        padding-top: 0;
+      }
+
+      .navbar {
+        background-color: var(--accent-red);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1030;
+        display: flex;
+        align-items: center;
+        box-shadow: none;
+        border-bottom: none;
+      }
+
+      .navbar-brand {
+        color: white;
+      }
+
+      .navbar-nav .nav-link {
+        color: white;
+      }
+
+      .navbar .btn-success {
+        background-color: var(--accent-green);
+        border: none;
+      }
+
       .hero {
         background: url("https://source.unsplash.com/1600x600/?healthy-food")
           center center/cover no-repeat;
@@ -18,18 +59,75 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        background-blend-mode: overlay;
+        background-color: rgba(45, 27, 100, 0.6);
+        position: relative;
+        top: -80px;
+        padding-top: 80px;
+        margin-top: 0;
       }
+
+      .hero h1,
+      .hero p {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+      }
+
+      .btn-primary {
+        background-color: var(--accent-red);
+        border: none;
+      }
+
+      .recipe-card {
+        background-color: white;
+        border: 2px solid var(--primary);
+      }
+
       .recipe-card img {
         height: 200px;
         object-fit: cover;
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        border: 2px solid var(--accent-red);
+      }
+
+      footer {
+        background-color: var(--accent-green);
+        color: white;
+      }
+
+      #plusBtn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        font-size: 32px;
+        line-height: 0;
+        z-index: 1050;
+      }
+
+      .navbar-brand img {
+        height: 40px;
+        margin-right: 10px;
       }
     </style>
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">MenuMate</a>
+        <a
+          class="navbar-brand fw-bold d-flex align-items-center"
+          href="index.html"
+        >
+          <img
+            src="assets/images/MenuMate_simplified_Logo.png"
+            alt="MenuMate Logo"
+          />
+          MenuMate
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -43,11 +141,14 @@
           id="navbarNav"
         >
           <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="#">Explore</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Upload</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
             <li class="nav-item">
-              <a class="btn btn-success ms-3" href="#">Sign Up</a>
+              <a class="nav-link" href="explore.html">Explore</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.html">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-success ms-3" href="signup.html">Sign Up</a>
             </li>
           </ul>
         </div>
@@ -59,7 +160,9 @@
       <div>
         <h1 class="display-4 fw-bold">Discover & Share Healthy Recipes</h1>
         <p class="lead">Fuel your body. Inspire others.</p>
-        <a href="#" class="btn btn-primary btn-lg">Start Exploring</a>
+        <a href="explore.html" class="btn btn-primary btn-lg"
+          >Start Exploring</a
+        >
       </div>
     </div>
 
@@ -91,16 +194,15 @@
       </div>
     </section>
 
-    <!-- Upload Modal Trigger -->
-    <div class="text-center mb-5">
-      <button
-        class="btn btn-success"
-        data-bs-toggle="modal"
-        data-bs-target="#uploadModal"
-      >
-        Upload Your Recipe
-      </button>
-    </div>
+    <!-- Floating Plus Button -->
+    <button
+      class="btn btn-lg btn-success rounded-circle shadow"
+      id="plusBtn"
+      data-bs-toggle="modal"
+      data-bs-target="#uploadModal"
+    >
+      +
+    </button>
 
     <!-- Upload Recipe Modal -->
     <div class="modal fade" id="uploadModal" tabindex="-1" aria-hidden="true">
@@ -148,7 +250,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light text-center py-4 mt-auto">
+    <footer class="text-center py-4 mt-auto">
       <div class="container">
         <p class="mb-0">© 2025 MenuMate. Eat clean. Share freely.</p>
       </div>
